@@ -7,16 +7,17 @@ on:
 jobs:
   publish-gpr:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./sample-packages/npm
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.7.0
       - name: Install
-        working-directory: ./sample-packages/npm
         run: npm ci
       - name: Publish
-        working-directory: ./sample-packages/npm
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
