@@ -20,7 +20,13 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - name: Install
         run: npm ci
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      #- name: Publish
+      #  run: npm publish
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v2.2.1
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          registry: https://npm.pkg.github.com/
